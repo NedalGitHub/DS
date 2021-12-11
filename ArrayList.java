@@ -14,6 +14,10 @@ public class ArrayList<E> implements Iterable<E> {
   public ArrayList(int initCap) {
     arr = (E[]) new Object[initCap];
   }
+  
+  public ArrayList(E[] items) {
+    arr = copyOf(items, items.length);
+  }
 
   public int size() {
     return sz;
@@ -140,7 +144,7 @@ public class ArrayList<E> implements Iterable<E> {
   }
   
   public Iterator<E> iterator() {
-    return new Iterator<E>() {
+    return new Iterator<>() {
       private int idx;
 
       @Override
