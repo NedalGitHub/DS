@@ -9,7 +9,6 @@ public class HNode<K, V> implements Entry<K, V> {
     this.next = next;
   }
 
-
   @Override
   public K getKey() {
     return key;
