@@ -137,4 +137,20 @@ public class ArrayList<E> {
 
     return sb.append("]").toString();
   }
+  
+  public Iterator<E> iterator() {
+    return new Iterator<E>() {
+      private int idx;
+
+      @Override
+      public boolean hasNext() {
+        return idx != sz;
+      }
+
+      @Override
+      public E next() {
+        return arr[idx++];
+      }
+    };
+  }
 }
