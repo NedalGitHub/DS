@@ -32,6 +32,6 @@ public class HNode<K, V> implements Entry<K, V> {
 
   @Override
   public String toString() {
-    return key + "=" + value;
+    return String.format("(%s=%s)", key, value);
   }
 }
