@@ -12,6 +12,8 @@ public class ArrayList<E> implements Iterable<E> {
   }
 
   public ArrayList(int initCap) {
+    if (initCap <= 0)
+      throw new Exception("Not a valid Capacity");
     arr = (E[]) new Object[initCap];
   }
   
