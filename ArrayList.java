@@ -1,7 +1,8 @@
 import static java.util.Arrays.copyOf;
 import static java.lang.System.arraycopy;
+import java.util.Iterator;
 
-public class ArrayList<E> {
+public class ArrayList<E> implements Iterable<E> {
 
   private E[] arr;
   private int sz;
