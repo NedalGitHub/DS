@@ -16,6 +16,10 @@ public class HashSet<E> implements Iterable<E> {
     this(1.0f);
   }
 
+  public int size() {
+    return sz;
+  }
+
   @Override
   public Iterator<E> iterator() {
     return new Iterator<>() {
@@ -48,17 +52,20 @@ public class HashSet<E> implements Iterable<E> {
     hashTable = (SNode<E>[]) new SNode[2 * hashTable.length];
     threshold = (int) (loadFactor * hashTable.length);
 
+    SNode<E> nxt;
     for (int i = 0, idx; i < oldTab.length; ++i)
       while (oldTab[i] != null) {
         idx = hash(oldTab[i].data);
-        hashTable[idx] = new SNode<>(oldTab[i].data, hashTable[idx]);
-        oldTab[i] = oldTab[i].next;
+        nxt = oldTab[i].next;
+        oldTab[i].next = hashTable[idx];
+        hashTable[idx] = oldTab[i];
+        oldTab[i] = nxt;
       }
   }
 
   public boolean add(E item) {
     if (!contains(item)) {
-      if (++sz >= threshold)
+      if (++sz > threshold)
         rehash();
 
       int idx = hash(item);
@@ -98,6 +105,7 @@ public class HashSet<E> implements Iterable<E> {
         if (Objects.equals(trav.next.data, item)) {
           trav.next = trav.next.next;
           del = true;
+
           break;
         }
 
