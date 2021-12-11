@@ -151,4 +151,18 @@ public class HashMap<K, V> implements Iterable<Entry<K, V>> {
       }
     };
   }
+  
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder("[");
+    Iterator<Entry<K, V>> it = iterator();
+
+    if (it.hasNext()) {
+      sb.append(it.next());
+      while (it.hasNext())
+        sb.append(", ").append(it.next());
+    }
+
+    return sb.append("]").toString();
+  }
 }
